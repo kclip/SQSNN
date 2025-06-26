@@ -269,5 +269,5 @@ class QuantumSpikingLayer(nn.Module):
 
         x = x.reshape(x.shape[0], self.num_neurons)
         x_flat = x.reshape(-1, 1)
-        spike, _ = self.qneuron(x_flat, theta_mem, theta_in, theta_ent)
-        return spike.reshape(x.shape)
+        spike, p_spike = self.qneuron(x_flat, theta_mem, theta_in, theta_ent)
+        return spike.reshape(x.shape), p_spike.reshape(x.shape)
