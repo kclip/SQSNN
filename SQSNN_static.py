@@ -61,9 +61,9 @@ class SQSNN(nn.Module):
         for t in range(self.T):
             x_t = x[:, t, :]
             h1 = self.linear1(x_t)
-            h1_spk = self.q_hidden(h1)
+            h1_spk, _ = self.q_hidden(h1)
             h2 = self.linear2(h1_spk)
-            out_spk = self.q_output(h2)
+            out_spk, _ = self.q_output(h2)
             spk2_rec.append(out_spk)
             spk1_rec.append(h1_spk)
         return torch.stack(spk2_rec, dim=0), torch.stack(spk1_rec, dim=0)
